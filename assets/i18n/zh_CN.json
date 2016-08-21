@@ -1,0 +1,106 @@
+{
+    "flagstyle": "flag-icon-cn",
+    "search": {
+        "PLACEHOLDER": "输入关键词..."
+    },
+    "common": {
+        "name": "名称",
+        "status": "状态",
+        "description": "描述",
+        "lastUpdate": "最后更新",
+        "generalInformation": "基本信息",
+        "projects": "项目",
+        "comments": "评论",
+        "executions": "测试执行",
+        "notification": "通知",
+        "recentChanges": "最近变更",
+        "recentComments": "最近评论",
+        "overview": "概述",
+        "edit": "编辑",
+        "files": "文件",
+        "output": "输出",
+        "logs": "日志",
+        "metaData": "元数据",
+        "update": "更新",
+        "revisions": "修订"
+    },
+    "messages": {
+        "message": "消息",
+        "unread": "未读消息",
+        "seeAll": "查看所有"
+    },
+    "notification": {
+        "new": "You have new notifications",
+        "seeAll": "查看所有"
+    },
+    "user": {
+        "profile": "我的档案",
+        "calendar": "我的日历",
+        "messages": "我的消息",
+        "lockScreen": "锁屏",
+        "logout": "退出"
+    },
+    "favorites": {
+            "myFavorites": "我的收藏"
+    },
+    "executionPlan": {
+        "executionPlan": "执行计划",
+        "executionPlanDetail": "执行计划细节",
+        "executionPlanList": "执行计划列表"
+    },
+    "execution": {
+        "execution": "测试执行",
+        "executionDetail": "测试执行细节"
+    },
+    "testCase":{
+        "testCase": "测试用例",
+        "testCaseDetail": "测试用例细节",
+        "testSteps": "测试步骤",
+        "testData": "测试数据"
+    },
+    "testData":{
+        "Definition" : "数据定义",
+        "Definitions": "数据定义",
+        "DefinitionList": "数据定义列表"
+    },
+    "testAction":{
+        "Definition" : "关键词定义",
+        "Definitions" : "关键词定义",
+        "DefinitionList": "关键词列表"
+    },
+    "navigation": {
+        "home": "首页",
+        "navigation": "页面导航",
+        "admin": "管理工具",
+        "documentation": "文档",
+        "dashboard": "控制面板",
+        "executionPlan":  "执行计划",
+        "dataConfig": "数据配置",
+        "testCase": "测试用例",
+        "importExport": "导入/导出",
+        "testCaseImport": "测试用例导入",
+        "testCaseExport": "测试用例导出",
+        "userManagement": "用户管理",
+        "roleManagement": "角色管理"
+    },
+    "project" : {
+        "projectList": "项目列表"
+    },
+    "copyright": {
+        "copyright": "版权所有",
+        "reserved": "保留权利"
+    },
+    "layout": {
+        "selector": "样式选择器",
+        "fixedHeader": "固定顶部",
+        "fixedSidebar": "固定侧栏",
+        "closeSidebar": "关闭侧栏",
+        "fixedFooter": "固定底部",
+        "save": "保存",
+        "reset": "重置"
+    },
+    "notification" : {
+        "newNotification" : "新通知",
+        "seeAll" : "查看所有"
+    }
+}

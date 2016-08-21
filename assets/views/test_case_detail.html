@@ -1,0 +1,292 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin" translate="testCase.testCaseDetail">Test Case Detail</h4>
+
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: INVOICE -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="testcase" ng-controller="testCaseDetailCtrl">
+                <!-- start: USER TABSET -->
+                <uib-tabset class="tabbable">
+                    <!-- start: TAB OVERVIEW -->
+                    <uib-tab heading="{{'common.overview' | translate}}">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="user-left">
+                                    <div class="center">
+                                        <hr>
+                                        <h4>{{testCase.name}}</h4>
+                                        <hr>
+                                    </div>
+                                    <table class="table table-condensed">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="3" translate="common.generalInformation">General Information</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>{{'common.name' | translate}}:</td>
+                                            <td>
+                                                {{testCase.name}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{'common.status' | translate}}:</td>
+                                            <td>
+                                                {{testCase.status}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{'common.lastUpdate' | translate}}:</td>
+                                            <td>{{testCase.lastUpdate}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="table table-condensed">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="3" translate="common.description">Description</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td> {{testCase.description}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="panel panel-white">
+                                    <div class="panel-heading border-light">
+                                        <h4 class="panel-title text-primary" translate="common.recentChanges">Recent Changes</h4>
+                                    </div>
+                                    <div class="panel-scroll height-200" perfect-scrollbar wheel-propagation="false" suppress-scroll-x="true">
+                                        <div class="panel-body">
+                                            <ul class="timeline-xs">
+                                                <li ng-class="{ 'timeline-item info': testCaseRevision.type == 'Insert',
+                                                    'timeline-item warning': testCaseRevision.type == 'Update',
+                                                    'timeline-item danger': testCaseRevision.type == 'Delete'}"
+                                                    ng-repeat="testCaseRevision in testCaseRevisionList.slice().reverse() | limitTo:10 ">
+                                                    <div class="margin-left-15">
+                                                        <div class="text-muted text-small">
+                                                            {{testCaseRevision.time}}
+                                                        </div>
+                                                        <p>
+                                                            {{testCaseRevision.content}}
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-white space20">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title" translate="common.recentComments">Recent Comments</h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="ltwt">
+                                            <li class="ltwt_tweet">
+                                                <p>
+                                                    <a href class="text-info">@Suny</a>
+                                                    The description is not clear, need to be clarified.
+                                                </p>
+                                                <span class="block text-light"><i class="fa fa-fw fa-clock-o"></i> 2 minuts ago</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-tab>
+                    <!-- end: TAB OVERVIEW -->
+                    <!-- start: TAB TEST META -->
+                    <uib-tab heading="{{'common.metaData' | translate}}">
+                        <table ng-table="testCaseMetaTable" show-filter="false" class="table table-striped">
+                            <tr ng-repeat="testCaseMeta in $data">
+                                <td class="col-md-1" data-title="'Order'" sortable="'id'"> {{testCaseMeta.id}} </td>
+                                <td data-title="'Type'" sortable="'metaType'">{{testCaseMeta.metaType}}</td>
+                                <td data-title="'Meta Key'" sortable="'metaKey'">{{testCaseMeta.metaKey}}</td>
+                                <td data-title="'Meta Value'" sortable="'metaValue'">{{testCaseMeta.metaValue}}</td>
+                                <td data-title="'Last Update'" sortable="'lastUpdate'">{{testCaseMeta.lastUpdate}}</td>
+                            </tr>
+                        </table>
+                    </uib-tab>
+                    <!-- end: TAB TEST META -->
+                    <!-- start: TAB TEST DATA -->
+                    <uib-tab heading="{{'testCase.testData' | translate}}">
+                        <table ng-table="testDataTable" show-filter="false" class="table table-striped">
+                            <tr ng-repeat="testData in $data">
+                                <td class="col-md-1" data-title="'ID'" sortable="'id'"> {{testData.testDataDefinitionDto.id}} </td>
+                                <td data-title="'Type'">{{testData.testDataDefinitionDto.type}}</td>
+                                <td data-title="'Field'" sortable="'testDataDefinitionDto.field'"> {{testData.testDataDefinitionDto.field}}</td>
+                                <td data-title="'Value'" sortable="'testDataDefinitionDto.value'">{{testData.testDataDefinitionDto.value}}</td>
+                                <td data-title="'File'" sortable="'testDataDefinitionDto.fileDto.id'"><a ui-sref="app.file.detail({id : testData.testDataDefinitionDto.fileDto.id})">{{testData.testDataDefinitionDto.fileDto.name}}</a></td>
+                                <td data-title="'Remark'" sortable="'testDataDefinitionDto.remark'">{{testData.testDataDefinitionDto.remark}}</td>
+                                <td data-title="'Last Update'" sortable="'testDataDefinitionDto.lastUpdate'">{{testData.testDataDefinitionDto.lastUpdate}}</td>
+                            </tr>
+                        </table>
+                    </uib-tab>
+                    <!-- end: TAB TEST DATA -->
+                    <!-- start: TAB TEST STEP -->
+                    <uib-tab heading="{{'testCase.testSteps' | translate}}">
+                        <table ng-table="testStepTable" show-filter="false" class="table table-striped">
+                            <tr ng-repeat="testStep in $data">
+                                <td class="col-md-1" data-title="'Order'" sortable="'id'"> {{testStep.stepOrder}} </td>
+                                <td data-title="'Name'"  sortable="'testAction.name'">{{testStep.testAction.name}}</td>
+                                <td data-title="'Parameter'" sortable="'testAction.remark'">{{testStep.parameter}}</td>
+                                <td data-title="'Remark'" sortable="'testAction.remark'">{{testStep.testAction.remark}}</td>
+                                <td data-title="'Last Update'" sortable="'testAction.lastUpdate'">{{testStep.testAction.lastUpdate}}</td>
+                            </tr>
+                        </table>
+                    </uib-tab>
+                    <!-- end: TAB TEST STEP -->
+                    <!-- start: TAB REVISION -->
+                    <uib-tab heading="{{'common.revisions' | translate}}">
+                        <table ng-table="revisionTable" class="table table-striped">
+                            <tr ng-repeat="revision in $data">
+                                <td class="col-md-1" data-title="'ID'" sortable="'id'"> {{revision.id}} </td>
+                                <td data-title="'Type'" sortable="'type'"> {{revision.type}}</td>
+                                <td data-title="'Context'" sortable="'content'"> {{revision.content}}</td>
+                                <td data-title="'Time'" sortable="'time'">{{revision.time}}</td>
+                            </tr>
+                        </table>
+                    </uib-tab>
+                    <!-- end: TAB REVISION -->
+                    <!-- start: TAB EXECUTIONS -->
+                    <uib-tab heading="{{'common.executions' | translate}}">
+                        <table ng-table="executionTable" class="table table-striped">
+                            <tr ng-repeat="executionBrief in $data">
+                                <td class="col-md-1" data-title="'ID'" sortable="'id'"> {{executionBrief.id}} </td>
+                                <td data-title="'Execution Plan'" sortable="'executionPlanName'"> <a ui-sref="app.execution.detail({id : executionBrief.id})">{{executionBrief.executionPlanName}}</a></td>
+                                <td data-title="'Context'" sortable="'executionContextName'"> <a ui-sref="app.execution_context_detail({id : executionBrief.executionContextId})">{{executionBrief.executionContextName}}</a></td>
+                                <td data-title="'Result'" sortable="'result'"> <a ui-sref="app.execution({id : executionBrief.id})"><span class="label label-success" ng-if="executionBrief.result == 'Pass'">{{executionBrief.result}}</span><span class="label label-danger" ng-if="executionBrief.result == 'Fail'">{{executionBrief.result}}</span></a></td>
+                                <td class="col-md-1" data-title="'Status'" sortable="'status'">{{executionBrief.status}}</td>
+                                <td data-title="'Remark'">{{executionBrief.remark}}</td>
+                            </tr>
+                        </table>
+                    </uib-tab>
+                    <!-- end: TAB EXECUTIONS -->
+                    <!-- start: TAB COMMENTS -->
+                    <uib-tab heading="{{'common.comments' | translate}}">
+                        <table ng-table="commentTable" class="table table-striped">
+                            <tr ng-repeat="comment in $data">
+                                <td class="col-md-1" data-title="'ID'" sortable="'id'"> {{comment.id}} </td>
+                                <td data-title="'Name'" sortable="'userDto.nickName'"><img class="profile-photo" ng-src="data:image/jpeg;base64,{{comment.userDto.avatar}}"> {{comment.userDto.nickName}}</td>
+                                <td data-title="'Content'" sortable="'content'">{{comment.content}}</span></a></td>
+                                <td data-title="'Time'" sortable="'time'">{{comment.time}}</td>
+                            </tr>
+                        </table>
+                    </uib-tab>
+                    <!-- end: TAB COMMENTS -->
+                    <!-- start: TAB EDIT -->
+                    <uib-tab heading="{{'common.edit' | translate}}" active="editActive">
+                        <!--form action="#" role="form" id="form"-->
+                        <fieldset>
+                            <legend translate="common.generalInformation">
+                            </legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="block">{{"common.status" | translate}}:
+                                        </label>
+                                        <div class="clip-radio radio-primary">
+                                            <input type="radio" id="available" name="status" value="Available" ng-model="testCase.status">
+                                            <label for="available">
+                                                Available
+                                            </label>
+                                            <input type="radio" id="unavailable" name="status" value="Unavailable" ng-model="testCase.status">
+                                            <label for="unavailable">
+                                                Unavailable
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <label class="control-label">{{"common.name" | translate}}:
+                                        </label>
+                                        <input type="text" class="form-control underline" name="name" ng-model="testCase.name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">{{"common.description" | translate}}:
+                                        </label>
+                                        <textarea class="form-control autosize" name="description" ng-model="testCase.description" />
+                                    </div>
+                                    <div class="form-group">
+                                        <a class="btn btn-grey" ng-click="updateExecutionPlan()" translate="common.update"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>
+                                Meta Data
+                            </legend>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="block">Meta Type</label>
+                                        <input type="text" class="form-control" name="metaType" ng-model="putMeta.metaType" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="block">Meta Key</label>
+                                        <input type="text" class="form-control" name="metaKey" ng-model="putMeta.metaKey" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="block">Meta Value</label>
+                                        <input type="text" class="form-control" name="metaValue" ng-model="putMeta.metaValue" />
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="block">
+                                            <a class="btn btn-grey" ng-click="putExecutionPlanMeta()"> Add Meta </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>Type</th>
+                                                <th>Key</th>
+                                                <th>Value</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="metaData in metaDataList">
+                                                <td>{{metaData.metaType}} </td>
+                                                <td>{{metaData.metaKey}} </td>
+                                                <td>{{metaData.metaValue}} </td>
+                                                <td>
+                                                    <a class="btn btn-grey btn-sm" ng-click="editExecutionPlanMeta(metaData)">Edit</a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-grey btn-sm" ng-click="deleteExecutionPlanMeta(metaData)">Delete</a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <!--/form-->
+                    </uib-tab>
+                    <!-- end: TAB EDIT -->
+                </uib-tabset>
+                <!-- end: USER TABSET -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: INVOICE -->

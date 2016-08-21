@@ -1,0 +1,110 @@
+{
+    "flagstyle": "flag-icon-us",
+    "search": {
+        "PLACEHOLDER": "Enter search text here..."
+    },
+    "topbar": {
+        "messages": {
+            "MAIN": "Messages",
+            "HEADER": "Unread messages",
+            "SEEALL": "See All"
+        },
+
+        "activities": {
+            "MAIN": "Activities",
+            "HEADER": "You have new notifications",
+            "SEEALL": "See All"
+        },
+        "user": {
+            "PROFILE": "My Profile",
+            "CALENDAR": "My Calendar",
+            "MESSAGES": "My Messages",
+            "LOCKSCREEN": "Lock Screen",
+            "LOGOUT": "Log Out"
+        }
+    },
+    "offsidebar": {
+        "chat": {
+            "ONLINE": "On-Line",
+            "OFFLINE": "Off-Line",
+            "BACK": "Back",
+            "SEND": "Send",
+            "PLACEHOLDER": "Message"
+        },
+        "favorites": {
+            "MAIN": "Favorites"
+        },
+        "settings": {
+            "MAIN": "General Settings",
+            "NOTIFICATIONS": "Enable Notifications",
+            "SHOWEMAIL": "Show your E-mail",
+            "SHOWUSERS": "Show Offline Users",
+            "EMAILALERT": "E-mail Alerts",
+            "SMSALERT": "SMS Alerts",
+            "SAVE": "Save Changes"
+        }
+    },
+    "execution_plan": {
+        "ExecutionPlan": "Execution Plan",
+        "ExecutionPlanDetail": "Execution Plan Detail"
+    },
+    "testCase":{
+        "TestCase": "Test Case",
+        "TestCaseDetail": "Test Case Detail"
+    },
+    "sidebar": {
+        "heading": {
+            "NAVIGATION": "Main Navigation",
+            "ADMIN": "Admin Tools",
+            "DOCUMENTATION": "Documentation"
+        },
+        "nav": {
+            "dashboard": {
+                "MAIN": "Dashboard"
+            },
+            "execution_plan": {
+                "MAIN": "Execution Plan"
+            },
+            "data_config": {
+                "MAIN": "Data Configuration",
+                "GLOBAL_TEST_DATA": "Global Test Data",
+                "GLOBAL_PROPERTY": "Global Property"
+            },
+            "test_case": {
+                "MAIN": "Test Case"
+            },
+            "import_export": {
+                "MAIN": "Import / Export",
+                "CASE_IMPORT": "Test Case Import",
+                "CASE_EXPORT": "Test Case Export"
+            },
+            "user_management": {
+                "MAIN": "User Management"
+            },
+            "group_management": {
+                "MAIN": "Group Management"
+            }
+        }
+    },
+    "footer": {
+        "copyright": {
+            "MAIN": "Copyright",
+            "MESSAGE": "All rights reserved"
+        }
+    },
+    "setting": {
+        "MAIN": "Style Selector",
+        "FIXEDHEADER": "Fixed header",
+        "FIXEDSIDEBAR": "Fixed sidebar",
+        "CLOSEDSIDEBAR": "Closed sidebar",
+        "FIXEDFOOTER": "Fixed footer"
+    },
+    "dashboard": {
+        "HOME": "Home",
+        "WELCOME": "Welcome to {{appName}}",
+        "OVERVIEW": "Overview",
+        "project": {
+            "LIST": "Project List"
+        }
+    }
+}

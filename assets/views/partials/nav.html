@@ -1,0 +1,114 @@
+<!-- start: MAIN NAVIGATION MENU -->
+<div class="navbar-title">
+    <span translate="navigation.navigation">Main Navigation</span>
+</div>
+<ul class="main-navigation-menu">
+    <li ui-sref-active="active">
+        <a ui-sref="app.dashboard">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'DH' }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="navigation.dashboard"> Dashboard </span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li ng-class="{'active open':$state.includes('app.execution_plan')}">
+        <a ui-sref="app.execution_plan.list">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'EP' | translate }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="navigation.executionPlan"> Execution Plan </span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li ng-class="{'active open':$state.includes('app.test_case')}">
+        <a ui-sref="app.test_case.list">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'TC' }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="navigation.testCase"> Test Case </span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li ng-class="{'active open':$state.includes('app.test_data_definition')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'DC' }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="navigation.dataConfig"></span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ui-sref-active="active">
+                <a ui-sref="app.test_data.config.test_data_definition"> <span class="title" translate="testData.Definitions"></span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.test_data.config.test_action_definition"> <span class="title" translate="testAction.Definitions"> Global Property </span> </a>
+            </li>
+        </ul>
+    </li>
+    <li ng-class="{'active open':$state.includes('app.ui')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'IE' }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="navigation.importExport"> Import / Export </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ui-sref-active="active">
+                <a ui-sref="app.ui.elements"> <span class="title" translate="navigation"> Test Case Import </span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.ui.buttons"> <span class="title" translate="navigation"> Test Case Export </span> </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+<!-- end: MAIN NAVIGATION MENU -->
+<!-- start: FEATURES -->
+<div class="navbar-title">
+    <span translate="navigation.admin">Admin Tools</span>
+</div>
+<ul class="folders">
+    <li>
+        <a ui-sref="landing.welcome">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'UM' }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="navigation.userManagement"> User Admin </span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li>
+        <a href="#" target="_blank">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="{{ 'GM' }}" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title" translate="navigation.roleManagement"> Role Admin </span>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>
+<!-- end: FEATURES -->

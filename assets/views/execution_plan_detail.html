@@ -1,0 +1,265 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin" translate="executionPlan.executionPlanDetail">ExecutionPlanDetail</h4>
+
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: USER PROFILE -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- /// controller:  'UserCtrl' -  localtion: assets/js/controllers/executionPlanDetailCtrl.js /// -->
+            <div ng-controller="executionPlanDetailCtrl">
+                <!-- start: USER TABSET -->
+                <uib-tabset class="tabbable">
+                    <!-- start: TAB OVERVIEW -->
+                    <uib-tab heading="{{'common.overview' | translate}}">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="user-left">
+                                    <div class="center">
+                                        <hr>
+                                            <h4>{{executionPlan.name}}</h4>
+                                        <hr>
+                                    </div>
+                                    <table class="table table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="3">{{common.overview | translate}}General Information</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>No:</td>
+                                                <td>
+                                                    {{executionPlan.id}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Status:</td>
+                                                <td>
+                                                    {{executionPlan.status}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Description:</td>
+                                                <td>{{executionPlan.description}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="table table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="3">Meta Data</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="metaData in metaDataList">
+                                                <td> {{metaData.metaKey}}: </td>
+                                                <td> {{metaData.metaValue}} </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="panel panel-white" id="activities">
+                                    <div class="panel-heading border-light">
+                                        <h4 class="panel-title text-primary" translate="common.recentChanges"></h4>
+                                        <paneltool class="panel-tools" tool-collapse="tool-collapse" tool-refresh="load1" tool-dismiss="tool-dismiss"></paneltool>
+                                    </div>
+                                    <div class="panel-scroll height-200" perfect-scrollbar wheel-propagation="false" suppress-scroll-x="true">
+                                        <div class="panel-body">
+                                            <ul class="timeline-xs">
+                                                <li ng-class="{ 'timeline-item info': executionPlanRevision.type == 'Insert',
+                                                    'timeline-item warning': executionPlanRevision.type == 'Update',
+                                                    'timeline-item danger': executionPlanRevision.type == 'Delete'}"
+                                                    ng-repeat="executionPlanRevision in executionPlanRevisionList.slice().reverse() | limitTo:10 ">
+                                                    <div class="margin-left-15">
+                                                        <div class="text-muted text-small">
+                                                            {{executionPlanRevision.time}}
+                                                        </div>
+                                                        <p>
+                                                            {{executionPlanRevision.content}}
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-white space20">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title" translate="common.recentComments"></h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="ltwt">
+                                            <li class="ltwt_tweet">
+                                                <p class="ltwt_tweet_text">
+                                                    <a href class="text-info">
+                                                        @Shakespeare
+                                                    </a>
+                                                    Some are born great, some achieve greatness, and some have greatness thrust upon them.
+                                                </p>
+                                                <span class="block text-light"><i class="fa fa-fw fa-clock-o"></i> 2 minuts ago</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-tab>
+                    <!-- end: TAB OVERVIEW -->
+                    <!-- start: TAB EXECUTIONS -->
+                    <uib-tab heading="{{'common.executions' | translate}}">
+                        <table ng-table="executionsTable" show-filter="true" class="table table-striped">
+                            <tr ng-repeat="execution_brief in $data">
+                                <td class="col-md-1" data-title="'ID'" filter="{ 'id': 'text' }" sortable="'id'"> {{execution_brief.id}} </td>
+                                <td data-title="'Test Case'" filter="{ 'testCaseName': 'text' }" sortable="'name'"> <a ui-sref="app.execution.detail({id : execution_brief.id})">{{execution_brief.testCaseName}}</a></td>
+                                <td data-title="'Context'" filter="{ 'executionContextName': 'text' }" sortable="'name'"> <a ui-sref="app.execution_context_detail({id : execution_brief.executionContextId})">{{execution_brief.executionContextName}}</a></td>
+                                <td data-title="'Result'" filter="{ 'result': 'text' }" sortable="'name'"> <a ui-sref="app.execution_plan_detail({id : execution_brief.id})"><span class="label label-success" ng-if="execution_brief.result == 'Pass'">{{execution_brief.result}}</span><span class="label label-danger" ng-if="execution_brief.result == 'Fail'">{{execution_brief.result}}</span></a></td>
+                                <td class="col-md-1" data-title="'Status'" filter="{ 'status': 'text' }" sortable="'status'">{{execution_brief.status}}</td>
+                                <td data-title="'Remark'" filter="{ 'remark': 'text' }">{{execution_brief.remark}}</td>
+                            </tr>
+                        </table>
+                    </uib-tab>
+                    <!-- end: TAB EXECUTIONS -->
+                    <!-- start: TAB REVISION -->
+                    <uib-tab heading="{{'common.revisions' | translate}}">
+                        <table ng-table="revisionTable" class="table table-striped">
+                            <tr ng-repeat="revision in $data">
+                                <td class="col-md-1" data-title="'ID'" sortable="'id'"> {{revision.id}} </td>
+                                <td data-title="'Type'" sortable="'type'"> {{revision.type}}</td>
+                                <td data-title="'Context'" sortable="'content'"> {{revision.content}}</td>
+                                <td data-title="'Time'" sortable="'time'">{{revision.time}}</td>
+                            </tr>
+                        </table>
+                    </uib-tab>
+                    <!-- end: TAB REVISION -->
+                    <!-- start: TAB COMMENTS -->
+                    <uib-tab heading="{{'common.comments' | translate}}">
+                        <table ng-table="commentTable" class="table table-striped">
+                            <tr ng-repeat="comment in $data">
+                                <td class="col-md-1" data-title="'ID'" sortable="'id'"> {{comment.id}} </td>
+                                <td data-title="'Name'" sortable="'userDto.nickName'"><img class="profile-photo" ng-src="data:image/jpeg;base64,{{comment.userDto.avatar}}"> {{comment.userDto.nickName}}</td>
+                                <td data-title="'Content'" sortable="'content'">{{comment.content}}</span></a></td>
+                                <td data-title="'Time'" sortable="'time'">{{comment.time}}</td>
+                            </tr>
+                        </table>
+                    </uib-tab>
+                    <!-- end: TAB COMMENTS -->
+                    <!-- start: TAB EDIT -->
+                    <uib-tab heading="{{'common.edit' | translate}}" active="editActive">
+                        <!--form action="#" role="form" id="form"-->
+                            <fieldset>
+                                <legend>
+                                    General Information
+                                </legend>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                Name
+                                            </label>
+                                            <input type="text" placeholder="Enter execution plan name" class="form-control" name="name" ng-model="executionPlan.name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                Description
+                                            </label>
+                                            <textarea placeholder="Enter execution plan description" class="form-control" name="description" ng-model="executionPlan.description" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="block">
+                                                Status
+                                            </label>
+                                            <div class="clip-radio radio-primary">
+                                                <input type="radio" id="opened" name="status" value="Opened" ng-model="executionPlan.status">
+                                                <label for="opened">
+                                                    Opened
+                                                </label>
+                                                <input type="radio" id="closed" name="status" value="Closed" ng-model="executionPlan.status">
+                                                <label for="closed">
+                                                    Closed
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="block">
+                                                Operation
+                                            </label>
+                                            <a class="btn btn-grey" ng-click="updateExecutionPlan()"> Update General Information </a>
+                                            <a ladda="ldloading.expand_right_progress" class="btn btn-grey" data-style="expand-right" ng-click="updateExecutionPlan()"> Delete </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>
+                                    Meta Data
+                                </legend>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="block">Meta Type</label>
+                                            <input type="text" class="form-control" name="metaType" ng-model="putMeta.metaType" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="block">Meta Key</label>
+                                            <input type="text" class="form-control" name="metaKey" ng-model="putMeta.metaKey" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="block">Meta Value</label>
+                                            <input type="text" class="form-control" name="metaValue" ng-model="putMeta.metaValue" />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="block">
+                                                <a class="btn btn-grey" ng-click="putExecutionPlanMeta()"> Add Meta </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th>Type</th>
+                                                    <th>Key</th>
+                                                    <th>Value</th>
+                                                    <th>Edit</th>
+                                                    <th>Delete</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="metaData in metaDataList">
+                                                    <td>{{metaData.metaType}} </td>
+                                                    <td>{{metaData.metaKey}} </td>
+                                                    <td>{{metaData.metaValue}} </td>
+                                                    <td>
+                                                        <a class="btn btn-grey btn-sm" ng-click="editExecutionPlanMeta(metaData)">Edit</a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-grey btn-sm" ng-click="deleteExecutionPlanMeta(metaData)">Delete</a>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        <!--/form-->
+                    </uib-tab>
+                    <!-- end: TAB EDIT -->
+                </uib-tabset>
+                <!-- end: USER TABSET -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: USER PROFILE -->

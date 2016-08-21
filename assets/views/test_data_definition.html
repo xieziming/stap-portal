@@ -1,0 +1,33 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin" translate="testData.DefinitionList">Execution Plan List</h4>
+
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: TABLE WITH FILTERS -->
+<div class="container-fluid container-fullw">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <div ng-controller="testDataDefinitionCtrl">
+                        <table ng-table="testDataDefinitionTable" show-filter="true" class="table table-striped">
+                            <tr ng-repeat="testDataDefinitionDto in $data">
+                                <td class="col-md-1" data-title="'ID'" filter="{ 'id': 'text' }" sortable="'id'"> {{testDataDefinitionDto.id}} </td>
+                                <td data-title="'Type'" filter="{ 'type': 'text' }" sortable="'type'">{{testDataDefinitionDto.type}}</td>
+                                <td data-title="'Field'" filter="{ 'field': 'text' }" sortable="'field'"> {{testDataDefinitionDto.field}}</td>
+                                <td data-title="'Value'" filter="{ 'value': 'text' }" sortable="'value'">{{testDataDefinitionDto.value}}</td>
+                                <td data-title="'File'" sortable="'fileDto.name'"><a ui-sref="app.file.detail({id : testDataDefinitionDto.fileDto.id})">{{testDataDefinitionDto.fileDto.name}}</a></td>
+                                <td data-title="'Remark'" filter="{ 'remark': 'text' }" sortable="'remark'">{{testDataDefinitionDto.remark}}</td>
+                                <td data-title="'Last Update'" sortable="'lastUpdate'">{{testDataDefinitionDto.lastUpdate}}</td>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: TABLE WITH FILTERS -->
