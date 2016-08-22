@@ -2,10 +2,10 @@
 /** 
   * controller for Execution Plan Detail
 */
-app.controller('executionDetailCtrl', function ($scope, $filter, $http, StapTableService, ENV_CONFIG, $stateParams) {
+app.controller('executionDetailCtrl', function ($scope, $filter, $http, StapTableService, GATEWAY, $stateParams) {
 
 
-    $http.get(ENV_CONFIG.gatewayUrl + '/execution/' + $stateParams.id).then(function (res) {
+    $http.get(GATEWAY.gatewayUrl + '/execution/' + $stateParams.id).then(function (res) {
         $scope.execution = res.data;
         $scope.executionPlan = res.data.executionPlanDto;
         $scope.executionContext = res.data.executionContext;
@@ -24,7 +24,7 @@ app.controller('executionDetailCtrl', function ($scope, $filter, $http, StapTabl
         $scope.executionLogTable = StapTableService.createStapTable(executionLogDtoList);
     });
 
-    $http.get(ENV_CONFIG.gatewayUrl + '/execution/' + $stateParams.id+"/comment").then(function (res) {
+    $http.get(GATEWAY.gatewayUrl + '/execution/' + $stateParams.id+"/comment").then(function (res) {
         var commentList = res.data;
         $scope.commentTable = StapTableService.createStapTable(commentList);
     });

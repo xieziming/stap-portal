@@ -22,15 +22,15 @@ app.service('AuthService', function ($http, ENV_CONFIG, MessageService) {
 
     function useAuthCache(authResultCache) {
         authResult = JSON.parse(authResultCache);
-        $http.defaults.headers.common['Stap-User'] = authResult.userDto.name;
-        $http.defaults.headers.common['Stap-Token'] = authResult.token;
+        $http.defaults.headers.common['stap-user'] = authResult.userDto.name;
+        $http.defaults.headers.common['stap-token'] = authResult.token;
     }
 
     function destroyAuthCache() {
         authResult = {};
         window.localStorage.removeItem(STAP_AUTH_CACHE_KEY);
-        $http.defaults.headers.common['Stap-User'] = undefined;
-        $http.defaults.headers.common['Stap-Token'] = undefined;
+        $http.defaults.headers.common['stap-user'] = undefined;
+        $http.defaults.headers.common['stap-token'] = undefined;
     }
 
     authService.login = function (credentials) {
@@ -73,14 +73,12 @@ app.run(function ($rootScope, $state, AUTH_EVENTS, AuthService) {
             if(!AuthService.isAuthorized(authorizedRoles)){
                 event.preventDefault();
                 $state.go($state.current, {}, {reload: true});
-                $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
             }
         }
 
         if(!AuthService.isAuthenticated()) {
             if(next.name !== "login.signin"){
-                event.preventDefault();
-                $state.go('login.signin');
+                $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
             }
         }
     });

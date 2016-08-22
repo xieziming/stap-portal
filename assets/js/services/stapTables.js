@@ -2,7 +2,7 @@
  * Created by Suny on 7/6/16.
  */
 
-app.service('StapTableService',["$http", "$filter", "ngTableParams", "ENV_CONFIG", function ($http, $filter, ngTableParams, ENV_CONFIG) {
+app.service('StapTableService',["$http", "$filter", "ngTableParams", "GATEWAY", function ($http, $filter, ngTableParams, GATEWAY) {
     var stapTableService = {};
     stapTableService.createStapTable = function (data) {
         var count = arguments[1]?arguments[1]:15;

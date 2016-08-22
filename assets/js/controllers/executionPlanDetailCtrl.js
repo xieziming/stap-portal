@@ -2,10 +2,10 @@
 /** 
   * controller for Execution Plan Detail
 */
-app.controller('executionPlanDetailCtrl', function ($rootScope, $scope, $filter, $http, ngTableParams, ENV_CONFIG, $stateParams, $timeout, MessageService, StapTableService) {
+app.controller('executionPlanDetailCtrl', function ($rootScope, $scope, $filter, $http, ngTableParams, GATEWAY, $stateParams, $timeout, MessageService, StapTableService) {
 
 
-    $http.get(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id).then(function (res) {
+    $http.get(GATEWAY.gatewayUrl + '/execution_plan/' + $stateParams.id).then(function (res) {
         $scope.executionPlan = {
             id: res.data.id,
             name: res.data.name,
@@ -15,19 +15,19 @@ app.controller('executionPlanDetailCtrl', function ($rootScope, $scope, $filter,
         $scope.metaDataList = res.data.executionPlanMetaDtoList;
     });
 
-    $http.get(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id+"/execution_list").then(function (res) {
+    $http.get(GATEWAY.gatewayUrl + '/execution_plan/' + $stateParams.id+"/execution_list").then(function (res) {
         var executionBriefData = res.data;
         $scope.executionsTable = StapTableService.createStapTable(executionBriefData);
     });
 
-    $http.get(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id+"/revision").then(function (res) {
+    $http.get(GATEWAY.gatewayUrl + '/execution_plan/' + $stateParams.id+"/revision").then(function (res) {
         var executionPlanRevisionList = res.data.executionPlanRevisionList;
         var executionContextRevisionList = res.data.executionContextRevisionList;
         $scope.revisionTable = StapTableService.createStapTable(executionPlanRevisionList.concat(executionContextRevisionList));
         $scope.executionPlanRevisionList = executionPlanRevisionList;
     });
 
-    $http.get(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id+"/comment").then(function (res) {
+    $http.get(GATEWAY.gatewayUrl + '/execution_plan/' + $stateParams.id+"/comment").then(function (res) {
         var commentList = res.data;
         $scope.commentTable = StapTableService.createStapTable(commentList);
     });
@@ -35,7 +35,7 @@ app.controller('executionPlanDetailCtrl', function ($rootScope, $scope, $filter,
 
     $scope.ldloading = {};
     $scope.updateExecutionPlan = function () {
-        $http.post(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id, $scope.executionPlan).then(function (res) {
+        $http.post(GATEWAY.gatewayUrl + '/execution_plan/' + $stateParams.id, $scope.executionPlan).then(function (res) {
             MessageService.success("execution plan updated!");
         }, function (err) {
             MessageService.error(err.msg);
@@ -52,7 +52,7 @@ app.controller('executionPlanDetailCtrl', function ($rootScope, $scope, $filter,
             $scope.ldloading[style.replace('-', '_') + "_progress"] += 0.2;
         }, 1000);
 
-        $http.post(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id, $scope.executionPlan).then(function (res) {
+        $http.post(GATEWAY.gatewayUrl + '/execution_plan/' + $stateParams.id, $scope.executionPlan).then(function (res) {
             //alert(res.data);
         }, function (err) {
             alert(err);
@@ -78,7 +78,7 @@ app.controller('executionPlanDetailCtrl', function ($rootScope, $scope, $filter,
 
     $scope.putExecutionPlanMeta = function () {
         $scope.putMeta.executionPlanId = $scope.executionPlan.id;
-        $http.post(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id+"/execution_plan_meta", $scope.putMeta).then(function (res) {
+        $http.post(GATEWAY.gatewayUrl + '/execution_plan/' + $stateParams.id+"/execution_plan_meta", $scope.putMeta).then(function (res) {
             $scope.metaDataList.push(res.data);
             $scope.putMeta = {};
         }, function (err) {
@@ -91,7 +91,7 @@ app.controller('executionPlanDetailCtrl', function ($rootScope, $scope, $filter,
     };
 
     $scope.deleteExecutionPlanMeta = function (meta) {
-        $http.delete(ENV_CONFIG.gatewayUrl + '/execution_plan/' + $stateParams.id+"/execution_plan_meta/"+meta.id).then(function (res) {
+        $http.delete(GATEWAY.gatewayUrl + '/execution_plan/' + $stateParams.id+"/execution_plan_meta/"+meta.id).then(function (res) {
             removeMeta(meta.id);
         }, function (err) {
             alert(err);

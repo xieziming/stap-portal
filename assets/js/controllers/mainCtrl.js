@@ -217,9 +217,14 @@ function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window
     });
 
     $rootScope.currentUser = AuthService.userProfile();
+    $rootScope.authToken = AuthService.authResult.token
 
-    $rootScope.setCurrentUser = function (userProfile) {
-        $rootScope.currentUser = userProfile;
+    $rootScope.setCurrentUser = function (userDto) {
+        $rootScope.currentUser = userDto;
+    };
+
+    $rootScope.setAuthToken = function (authToken) {
+        $rootScope.authToken = authToken;
     };
 
     $scope.logout = function() {

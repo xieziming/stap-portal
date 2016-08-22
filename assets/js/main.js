@@ -90,6 +90,14 @@ app.factory('AuthInterceptor', [
 	'MessageService',
 	function($rootScope, $q, AUTH_EVENTS, MessageService){
 		return {
+			request: function(config){
+				config.headers = config.headers || {};
+				if($rootScope.currentUser && $rootScope.authToken) {
+					config.headers['Stap-User'] = $rootScope.currentUser.name;
+					config.headers['Stap-Token'] = $rootScope.authToken;
+				}
+				return config;
+			},
 			responseError: function(response){
 				if(response.status == -1){
 					MessageService.error("cannot connect to server!");

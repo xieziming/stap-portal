@@ -185,7 +185,7 @@ app.constant('JS_REQUIRES', {
             files: ['bower_components/ngmap/build/scripts/ng-map.min.js']
         }, {
             name: 'chart.js',
-            files: ['bower_components/angular-chart.js/dist/angular-chart.min.js', '../..//bower_components/angular-chart.js/dist/angular-chart.min.css']
+            files: ['bower_components/angular-chart.js/dist/angular-chart.min.js', 'bower_components/angular-chart.js/dist/angular-chart.min.css']
         }, {
             name: 'flow',
             files: ['bower_components/ng-flow/dist/ng-flow-standalone.min.js']
@@ -223,7 +223,7 @@ app.constant('JS_REQUIRES', {
     ]
 });
 
-app.constant('ENV_CONFIG', {
+app.constant('GATEWAY', {
     //'gatewayUrl': 'http://127.0.0.1:9090'
     'gatewayUrl': 'http://stap.xieziming.com:8080/stap-gateway'
 });

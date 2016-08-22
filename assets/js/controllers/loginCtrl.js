@@ -11,8 +11,8 @@ app.controller('LoginCtrl', function ($scope, $rootScope, $state, $http, AUTH_EV
         AuthService.login(credentials).then(function (authResult) {
             if(authResult) {
                 if (authResult.authSuccess) {
-                    $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
                     $rootScope.setCurrentUser(authResult.userDto);
+                    $rootScope.setAuthToken(authResult.token);
                     $state.go("app.dashboard");
                 } else {
                     $scope.result = authResult.authFailureReason;
